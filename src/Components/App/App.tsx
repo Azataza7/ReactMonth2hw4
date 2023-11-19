@@ -1,6 +1,7 @@
 import {responseJSON} from '../../types';
 import MessageContainer from '../MessageContainer/MessageContainer';
 import {useEffect, useState} from 'react';
+import SendMessageForm from '../SendMessageForm/SendMessageForm';
 
 const URL: string = 'http://146.185.154.90:8000/messages';
 
@@ -8,10 +9,10 @@ const App = () => {
   const [messages, setMessages] = useState<responseJSON[]>([]);
   const [datetime, setDatetime] = useState('');
 
-  const sendMessage = async () => {
+  const sendMessage = async (messageText, username) => {
     const data = new URLSearchParams();
-    data.set('message', 'JS makes me cry!');
-    data.set('author', 'John Azatovich');
+    data.set('message', messageText);
+    data.set('author', username);
 
     await fetch(URL, {
       method: 'post',
@@ -62,10 +63,9 @@ const App = () => {
       }
     };
 
-    getPostList();
+    void getPostList();
   }, []);
 
-  // sendMessage();
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
@@ -77,6 +77,7 @@ const App = () => {
 
   return (
     <>
+      <SendMessageForm sendMessage={sendMessage}/>
       <MessageContainer messageList={messages}/>
     </>
   );
