@@ -40,8 +40,6 @@ const App = () => {
     } catch (error) {
       console.error('Fetch error:', error);
     }
-
-    console.log(messages);
   };
 
   useEffect(() => {
