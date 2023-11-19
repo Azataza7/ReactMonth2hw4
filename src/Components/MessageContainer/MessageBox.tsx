@@ -1,8 +1,9 @@
 import React from 'react';
 import {responseJSON} from '../../types';
+import './MessageContainer.css';
 
 interface Props {
-  messageItem: responseJSON
+  messageItem: responseJSON;
 }
 
 const MessageBox: React.FC<Props> = ({messageItem}) => {
@@ -19,10 +20,10 @@ const MessageBox: React.FC<Props> = ({messageItem}) => {
   const formattedDateTime: string = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
   return (
-    <div className="message-box">
-      <span className="datetime">{formattedDateTime}</span>
-      <span className="datetime">{messageItem.message}</span>
-      <span className="datetime">{messageItem.author}</span>
+    <div className="message-box ">
+      <p className="author text-bg-success p-1">{messageItem.author}</p>
+      <p className="datetime text-bg-success">{formattedDateTime}</p>
+      <p className="message-text">{messageItem.message}</p>
     </div>
   );
 };

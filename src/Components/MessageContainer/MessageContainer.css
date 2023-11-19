@@ -1,0 +1,23 @@
+.message-container {
+  border: 1px solid red;
+}
+
+.message-box {
+  border: 1px solid black;
+  position: relative;
+  width: 400px;
+  margin: 10px auto;
+  border-radius: 10px;
+}
+
+.datetime {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.author {
+  padding-top: 5px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+}

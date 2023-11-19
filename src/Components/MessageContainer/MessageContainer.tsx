@@ -1,6 +1,7 @@
 import React from 'react';
 import MessageBox from './MessageBox';
 import {responseJSON} from '../../types';
+import './MessageContainer.css';
 
 interface Props {
   messageList: responseJSON[];
@@ -8,7 +9,7 @@ interface Props {
 
 const MessageContainer: React.FC<Props> = ({messageList}) => {
   return (
-    <div>
+    <div className="message-container">
       {messageList.map((item) => (
         <MessageBox key={item._id} messageItem={item}/>
       ))}
