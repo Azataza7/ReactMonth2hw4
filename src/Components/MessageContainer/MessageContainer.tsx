@@ -8,11 +8,16 @@ interface Props {
 }
 
 const MessageContainer: React.FC<Props> = React.memo(({messageList}) => {
+
+  const message = (
+    messageList.map((item, i) => (
+      <MessageBox key={i} messageItem={item}/>
+    ))
+  )
+
   return (
     <div className="message-container">
-      {messageList.map((item, i) => (
-        <MessageBox key={i} messageItem={item}/>
-      ))}
+      {message}
     </div>
   );
 });

@@ -6,7 +6,7 @@ interface Props {
   messageItem: responseJSON;
 }
 
-const MessageBox:React.FC<Props> = ({messageItem}) => {
+const MessageBox:React.FC<Props> = React.memo(({messageItem}) => {
   const utcDate = messageItem.datetime;
   const dateInUTC = new Date(utcDate);
 
@@ -26,6 +26,6 @@ const MessageBox:React.FC<Props> = ({messageItem}) => {
       <p className="message-text">{messageItem.message}</p>
     </div>
   );
-};
+});
 
 export default MessageBox;

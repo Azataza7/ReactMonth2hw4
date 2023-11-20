@@ -2,12 +2,14 @@ import {responseJSON} from '../../types';
 import MessageContainer from '../MessageContainer/MessageContainer';
 import {useEffect, useState} from 'react';
 import SendMessageForm from '../SendMessageForm/SendMessageForm';
+import Preloader from '../Preloader/Preloader';
 
 const URL: string = 'http://146.185.154.90:8000/messages';
 
 const App = () => {
   const [messages, setMessages] = useState<responseJSON[]>([]);
   const [datetime, setDatetime] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const sendMessage = async (messageText, username) => {
     const data = new URLSearchParams();
@@ -34,7 +36,7 @@ const App = () => {
       if (resultJson.length > 0) {
         setDatetime(resultJson[0].datetime);
         setMessages((prevState) =>
-          [...resultJson, ...prevState.splice(0, 15 - resultJson.length)]
+          [...resultJson, ...prevState.slice(0, 15 - resultJson.length)]
         );
       }
     } catch (error) {
@@ -45,6 +47,7 @@ const App = () => {
   useEffect(() => {
     const getPostList = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(URL);
 
         if (!response.ok) {
@@ -57,6 +60,7 @@ const App = () => {
           setMessages([...result].reverse());
           setDatetime(result[result.length - 1].datetime);
         }
+        setIsLoading(false);
       } catch (error) {
         console.error('Fetch error:', error);
       }
@@ -77,7 +81,10 @@ const App = () => {
   return (
     <>
       <SendMessageForm sendMessage={sendMessage}/>
-      <MessageContainer messageList={messages}/>
+      {isLoading ? (
+        <Preloader display={true}/>
+      ) : (<MessageContainer messageList={messages}/>
+      )}
     </>
   );
 };

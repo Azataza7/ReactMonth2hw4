@@ -30,6 +30,7 @@ const SendMessageForm = ({sendMessage}:Props) => {
         onChange={event => setMessage(event.target.value)}
         placeholder="write text"
         className="p-2"
+        required
       />
       <button type="submit" className="btn btn-success">Send</button>
     </form>
