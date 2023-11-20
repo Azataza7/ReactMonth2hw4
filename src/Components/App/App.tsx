@@ -32,7 +32,7 @@ const App = () => {
       const resultJson: responseJSON[] = await newMessageResponse.json();
 
       if (resultJson.length > 0) {
-        setDatetime(resultJson[resultJson.length - 1].datetime);
+        setDatetime(resultJson[0].datetime);
         setMessages((prevState) =>
           [...resultJson, ...prevState.splice(0, 15 - resultJson.length)]
         );
@@ -54,6 +54,7 @@ const App = () => {
 
         const result: responseJSON[] = await response.json();
         if (result.length > 0) {
+          setMessages([...result].reverse());
           setDatetime(result[result.length - 1].datetime);
         }
       } catch (error) {

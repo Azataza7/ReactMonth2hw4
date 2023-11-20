@@ -6,7 +6,7 @@ interface Props {
   messageItem: responseJSON;
 }
 
-const MessageBox: React.FC<Props> = ({messageItem}) => {
+const MessageBox:React.FC<Props> = ({messageItem}) => {
   const utcDate = messageItem.datetime;
   const dateInUTC = new Date(utcDate);
 

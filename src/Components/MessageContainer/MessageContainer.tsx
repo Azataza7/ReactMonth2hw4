@@ -7,14 +7,14 @@ interface Props {
   messageList: responseJSON[];
 }
 
-const MessageContainer: React.FC<Props> = ({messageList}) => {
+const MessageContainer: React.FC<Props> = React.memo(({messageList}) => {
   return (
     <div className="message-container">
-      {messageList.map((item) => (
-        <MessageBox key={item._id} messageItem={item}/>
+      {messageList.map((item, i) => (
+        <MessageBox key={i} messageItem={item}/>
       ))}
     </div>
   );
-};
+});
 
 export default MessageContainer;

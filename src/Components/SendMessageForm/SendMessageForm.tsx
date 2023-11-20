@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 
-const SendMessageForm = ({sendMessage}) => {
+interface Props{
+  sendMessage: (message: string, username: string) => void
+}
+
+const SendMessageForm = ({sendMessage}:Props) => {
   const [message, setMessage] = useState('');
   const [username, setUsername] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (message.trim() !== '') {
       sendMessage(message, username);
